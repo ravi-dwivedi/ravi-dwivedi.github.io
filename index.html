@@ -5,35 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<title>Ravi Dwivedi – Games and apps for kids and families</title>
-<meta name="description" content="Calm, kid-friendly games for Android by Ravi Dwivedi.">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/site.css">
+<meta name="color-scheme" content="light dark">
+<title>Ravi Dwivedi – Software engineer and app maker</title>
+<meta name="description" content="Ravi Dwivedi is a software engineer and Bar Raiser at Amazon, and makes calm, kid-friendly Android games.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <!-- HEADER:START -->
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">Ravi Dwivedi</a>
+    <a class="brand" href="/"><span class="monogram" aria-hidden="true">RD</span>Ravi Dwivedi</a>
     <nav aria-label="Main">
-      <a href="/" aria-current="page">Apps</a>
+      <a href="/" aria-current="page">Home</a>
       <a href="/about/">About</a>
+      <a href="/#apps">Apps</a>
+      <a href="/#contact">Contact</a>
     </nav>
   </div>
 </header>
 <!-- HEADER:END -->
 
 <main id="main" class="wrap">
+
+  <!-- ===== Intro ===== -->
   <section class="hero">
-    <h1>Friendly games for curious minds</h1>
-    <p>Calm, cute Android games for kids and grown-ups. No accounts, no in-app purchases, and only a few child-safe, non-personalised ads.</p>
+    <p class="eyebrow">Software engineer · Bar Raiser · App maker</p>
+    <h1>I build software that is reliable at scale and simple to use.</h1>
+    <p class="lead">I'm Ravi Dwivedi, a software engineer with more than ten years of experience across
+    e-commerce, payments and travel. Today I build large-scale systems at Amazon and serve as a
+    Bar Raiser in hiring. In my own time, I make calm, safe games for kids.</p>
+    <div class="link-row">
+      <a class="btn" href="/about/">About me</a>
+      <a class="btn secondary" href="#apps">See my apps</a>
+    </div>
   </section>
 
-  <section aria-labelledby="apps">
-    <h2 id="apps">Our apps</h2>
+  <!-- ===== What I do (add or remove a <li class="card"> to change the tiles) ===== -->
+  <section class="section" aria-labelledby="what-title">
+    <div class="section-head">
+      <h2 id="what-title">What I do</h2>
+    </div>
+    <ul class="grid cols-3">
+      <li class="card">
+        <span class="icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </span>
+        <h3>Software engineering</h3>
+        <p>Backend and distributed systems, APIs, data and mobile. Designing for scale,
+        security and low latency, from payment gateways to global e-commerce.</p>
+      </li>
+      <li class="card">
+        <span class="icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg>
+        </span>
+        <h3>Raising the hiring bar</h3>
+        <p>As a Bar Raiser at Amazon, I help hiring teams make fair, objective and long-term
+        hiring decisions, and coach interviewers along the way.</p>
+      </li>
+      <li class="card">
+        <span class="icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        </span>
+        <h3>Apps for families</h3>
+        <p>Calm Android games built with Kotlin and Jetpack Compose. No accounts, no in-app
+        purchases and only a few child-safe ads.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== Apps (cards between APPS markers are managed by _tools/sitetool.py) ===== -->
+  <section class="section" aria-labelledby="apps">
+    <div class="section-head">
+      <h2 id="apps">Apps and games</h2>
+      <p>Designed for kids and the grown-ups who hand them the phone: calm, offline-friendly and private by default.</p>
+    </div>
     <ul class="app-grid">
-    <!-- APPS:START  (one card per app; _tools/add_app.py keeps this list up to date) -->
+    <!-- APPS:START  (one card per app; _tools/sitetool.py keeps this list up to date) -->
     <!-- app:pawzzle-pals -->
     <li class="app-card">
       <div class="top">
@@ -52,23 +101,45 @@
     </ul>
   </section>
 
-  <section class="teaser" aria-labelledby="about-title">
-    <h2 id="about-title">Who makes these games?</h2>
-    <p>I'm Ravi, a software engineer from India who builds calm, kid-friendly games in my spare time.</p>
-    <p><a href="/about/">Read more about me</a></p>
+  <!-- ===== Personal note ===== -->
+  <section class="section" aria-labelledby="family-title">
+    <div class="band">
+      <span class="avatar small" aria-hidden="true">RD</span>
+      <div>
+        <h2 id="family-title">Beyond work</h2>
+        <p>I'm a proud dad to a loving baby boy, Atharv. He is a big reason I care about
+        technology that is calm and safe for children.</p>
+        <p><a href="/about/">Read more about me</a></p>
+      </div>
+    </div>
   </section>
 
-  <section aria-labelledby="contact">
-    <h2 id="contact">Contact</h2>
-    <p>Questions, feedback or a privacy request? Email [EMAIL].</p>
+  <!-- ===== Contact ===== -->
+  <section class="section" aria-labelledby="contact">
+    <div class="section-head">
+      <h2 id="contact">Get in touch</h2>
+      <p>Questions about an app, a privacy request, or just want to say hello? Email [EMAIL].</p>
+    </div>
+    <div class="link-row">
+      <a class="btn secondary" href="https://www.linkedin.com/in/ravi-dwivedi" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn secondary" href="https://github.com/ravi-dwivedi" rel="noopener noreferrer">GitHub</a>
+    </div>
   </section>
 </main>
 
+<!-- FOOTER:START -->
 <footer class="site-footer">
   <div class="wrap">
-    <p>© Ravi Dwivedi</p>
-    <p>This website uses no cookies, no analytics and no third-party scripts.</p>
+    <div>
+      <p>© 2026 Ravi Dwivedi</p>
+      <p>Apps and opinions on this site are my own and not affiliated with my employer.</p>
+    </div>
+    <div>
+      <p>No cookies, no analytics, no third-party scripts.</p>
+      <p><a href="/about/">About</a> · <a href="/#contact">Contact</a></p>
+    </div>
   </div>
 </footer>
+<!-- FOOTER:END -->
 </body>
 </html>

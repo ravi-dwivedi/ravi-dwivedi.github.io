@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
 <title>Page not found</title>
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <!-- Absolute paths: GitHub serves this page for any missing URL, at any depth. -->
@@ -15,10 +16,12 @@
 <!-- HEADER:START -->
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">Ravi Dwivedi</a>
+    <a class="brand" href="/"><span class="monogram" aria-hidden="true">RD</span>Ravi Dwivedi</a>
     <nav aria-label="Main">
-      <a href="/">Apps</a>
+      <a href="/">Home</a>
       <a href="/about/">About</a>
+      <a href="/#apps">Apps</a>
+      <a href="/#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -30,5 +33,19 @@
     <p><a href="/">Go to the home page</a> to see all apps.</p>
   </section>
 </main>
+<!-- FOOTER:START -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <p>© 2026 Ravi Dwivedi</p>
+      <p>Apps and opinions on this site are my own and not affiliated with my employer.</p>
+    </div>
+    <div>
+      <p>No cookies, no analytics, no third-party scripts.</p>
+      <p><a href="/about/">About</a> · <a href="/#contact">Contact</a></p>
+    </div>
+  </div>
+</footer>
+<!-- FOOTER:END -->
 </body>
 </html>

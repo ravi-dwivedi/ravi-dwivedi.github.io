@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
 <title>About – Ravi Dwivedi</title>
-<meta name="description" content="Ravi Dwivedi is a software engineer from India who makes calm, kid-friendly games for Android.">
+<meta name="description" content="Ravi Dwivedi: software engineer with 10+ years of experience, Bar Raiser at Amazon, maker of calm games for kids, and a proud dad.">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/site.css">
 </head>
@@ -15,54 +16,159 @@
 <!-- HEADER:START -->
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">Ravi Dwivedi</a>
+    <a class="brand" href="/"><span class="monogram" aria-hidden="true">RD</span>Ravi Dwivedi</a>
     <nav aria-label="Main">
-      <a href="/">Apps</a>
+      <a href="/">Home</a>
       <a href="/about/" aria-current="page">About</a>
+      <a href="/#apps">Apps</a>
+      <a href="/#contact">Contact</a>
     </nav>
   </div>
 </header>
 <!-- HEADER:END -->
 
+<!--
+  HOW TO EXTEND THIS PAGE
+  - Every part is a <section class="profile-section">. Copy one to add a new section
+    (e.g. Talks, Publications, Open source, Awards) and give it a unique id.
+  - Experience: copy one <li> inside <ol class="timeline"> (newest first).
+  - Skills: add an <li> to a .chips list, or copy a whole skill group.
+  - Photo: save a square ~400 px image as /assets/img/profile.webp and replace the
+    <span class="avatar"> with:
+    <img class="avatar" src="/assets/img/profile.webp" width="112" height="112" alt="Ravi Dwivedi">
+  - Copy-ready blocks are in _template/profile-blocks.html.
+-->
+
 <main id="main" class="wrap narrow">
+
+  <!-- ===== Header ===== -->
   <div class="profile-head">
-    <!-- Optional photo: save it as /assets/img/profile.webp (square, ~400 px) and replace
-         the <span> below with:
-         <img class="avatar" src="/assets/img/profile.webp" width="120" height="120" alt="Ravi Dwivedi"> -->
     <span class="avatar" aria-hidden="true">RD</span>
     <div>
-      <h1>Hi, I'm Ravi Dwivedi</h1>
-      <p class="tagline">Software engineer and indie Android developer, India</p>
+      <h1>Ravi Dwivedi</h1>
+      <p class="tagline">Software engineer · Bar Raiser at Amazon · App maker · India</p>
     </div>
   </div>
 
-  <p>I have been building software for more than ten years, across payments, travel and
-  e-commerce, using Java, C++, Python, SQL and Android. In my spare time I make small,
-  calm games for kids and families.</p>
+  <p>I'm a software engineer with more than ten years of experience building software across
+  e-commerce, payments and travel. I enjoy hard problems, from designing systems that stay fast and
+  reliable at very large scale to the small details that make a product simple to use.</p>
 
-  <p>Every game I make follows the same simple rules: no accounts, no in-app purchases,
-  progress stays on your device, and only a few child-safe, non-personalised ads.
-  I want grown-ups to feel good about handing their phone to a child.</p>
+  <p>At Amazon, I work as a Software Development Engineer and serve as a Bar Raiser, helping hiring
+  teams make fair, objective, long-term hiring decisions. Outside work, I build calm, private-by-default
+  Android games for kids and families.</p>
 
-  <h2>Background</h2>
-  <ul class="plain-list">
-    <li>B.Tech. in Computer Science and Engineering, Dr. B. R. Ambedkar National Institute of Technology, Jalandhar</li>
-    <li>Android Developer Nanodegree, Udacity</li>
-    <li>Interests: algorithms, data structures and puzzle design</li>
-  </ul>
+  <div class="link-row">
+    <a class="btn" href="https://www.linkedin.com/in/ravi-dwivedi" rel="noopener noreferrer">LinkedIn</a>
+    <a class="btn secondary" href="https://github.com/ravi-dwivedi" rel="noopener noreferrer">GitHub</a>
+    <a class="btn secondary" href="/#apps">My apps</a>
+  </div>
 
-  <h2>Get in touch</h2>
-  <p>Feedback, ideas or a question about one of the games? Email [EMAIL].</p>
-  <p><a href="https://www.linkedin.com/in/ravi-dwivedi" rel="noopener noreferrer">LinkedIn profile</a></p>
+  <!-- ===== What I do ===== -->
+  <section class="profile-section" id="focus" aria-labelledby="focus-title">
+    <h2 id="focus-title">What I do</h2>
+    <ul class="plain-list">
+      <li><strong>Build large-scale systems:</strong> backend and distributed services, APIs and data, with a focus on scalability, availability, security and low latency.</li>
+      <li><strong>Raise the bar in hiring:</strong> Bar Raiser at Amazon, interviewing across teams and coaching interviewers.</li>
+      <li><strong>Make apps:</strong> Android games in Kotlin and Jetpack Compose, designed to be calm, accessible and safe for children.</li>
+    </ul>
+  </section>
 
-  <p><a class="btn" href="/">See my apps</a></p>
+  <!-- ===== Experience (newest first; copy an <li> to add a role) ===== -->
+  <section class="profile-section" id="experience" aria-labelledby="experience-title">
+    <h2 id="experience-title">Experience</h2>
+    <ol class="timeline">
+      <li>
+        <h3>Software Development Engineer II · Amazon</h3>
+        <p class="meta">November 2019 – present</p>
+        <p>Building and operating large-scale services. Bar Raiser in the hiring process.</p>
+      </li>
+      <li>
+        <h3>Senior Software Engineer · Paytm</h3>
+        <p class="meta">April 2018 – November 2019 · Noida</p>
+        <p>Payment Gateway handling millions of transactions a day: stability, scalability and
+        security improvements, low-latency features, and tooling for monitoring and alerting.</p>
+      </li>
+      <li>
+        <h3>Software Engineer · GoFro.com</h3>
+        <p class="meta">June 2016 – March 2018 · New Delhi</p>
+        <p>Designed and built features for an international holidays marketplace.</p>
+      </li>
+      <li>
+        <h3>Software Developer · Nagarro</h3>
+        <p class="meta">July 2015 – May 2016 · Gurugram</p>
+        <p>Desktop, web and embedded software for an intelligent key-management system for an
+        international client.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== Skills (add an <li> to a list, or copy a group) ===== -->
+  <section class="profile-section" id="skills" aria-labelledby="skills-title">
+    <h2 id="skills-title">Skills</h2>
+    <div class="skill-groups">
+      <div>
+        <h3>Languages</h3>
+        <ul class="chips"><li>Java</li><li>Kotlin</li><li>C++</li><li>Python</li><li>SQL</li><li>C#</li><li>PHP</li></ul>
+      </div>
+      <div>
+        <h3>Engineering</h3>
+        <ul class="chips"><li>Distributed systems</li><li>System design</li><li>APIs and services</li><li>Payments</li><li>Data structures and algorithms</li></ul>
+      </div>
+      <div>
+        <h3>Frameworks and platforms</h3>
+        <ul class="chips"><li>Spring</li><li>Hibernate</li><li>Android</li><li>Jetpack Compose</li><li>MongoDB</li><li>ASP.NET</li></ul>
+      </div>
+      <div>
+        <h3>People</h3>
+        <ul class="chips"><li>Bar Raiser (hiring)</li><li>Interviewing</li><li>Mentoring</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Education ===== -->
+  <section class="profile-section" id="education" aria-labelledby="education-title">
+    <h2 id="education-title">Education</h2>
+    <ol class="timeline">
+      <li>
+        <h3>Android Developer Nanodegree · Udacity</h3>
+        <p class="meta">2016 – 2017</p>
+      </li>
+      <li>
+        <h3>B.Tech., Computer Science and Engineering</h3>
+        <p class="meta">Dr. B. R. Ambedkar National Institute of Technology, Jalandhar · 2011 – 2015</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== Beyond work ===== -->
+  <section class="profile-section" id="personal" aria-labelledby="personal-title">
+    <h2 id="personal-title">Beyond work</h2>
+    <p>I'm a proud father to a loving baby boy, Atharv. Being a dad shapes how I build: I want the apps I
+    make to be the kind I'd happily hand to my own son, calm, kind and safe.</p>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="profile-section" id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Get in touch</h2>
+    <p>Feedback, ideas or a question about one of my apps? Email [EMAIL], or connect with me on
+    <a href="https://www.linkedin.com/in/ravi-dwivedi" rel="noopener noreferrer">LinkedIn</a>.</p>
+  </section>
 </main>
 
+<!-- FOOTER:START -->
 <footer class="site-footer">
   <div class="wrap">
-    <p>© Ravi Dwivedi</p>
-    <p>This website uses no cookies, no analytics and no third-party scripts.</p>
+    <div>
+      <p>© 2026 Ravi Dwivedi</p>
+      <p>Apps and opinions on this site are my own and not affiliated with my employer.</p>
+    </div>
+    <div>
+      <p>No cookies, no analytics, no third-party scripts.</p>
+      <p><a href="/about/">About</a> · <a href="/#contact">Contact</a></p>
+    </div>
   </div>
 </footer>
+<!-- FOOTER:END -->
 </body>
 </html>

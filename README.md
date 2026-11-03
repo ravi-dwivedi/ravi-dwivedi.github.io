@@ -16,6 +16,8 @@ apps/<slug>/index.html                  app page
 apps/<slug>/privacy-policy.html         per-app privacy policy (URL goes into Play Console)
 apps/<slug>/img/                        icon-512.png, icon-192.webp, screens/*.webp
 _template/header.html                   shared header + menu for EVERY page (edit here only)
+_template/footer.html                   shared footer for EVERY page (edit here only)
+_template/profile-blocks.html           copy-ready blocks for the profile (role, skills, section)
 _template/app/, card.html               starting point for new apps (not published)
 _template/page.html                     starting point for other pages (FAQ, Press...)
 _tools/sitetool.py                       helper script (not published)
@@ -40,14 +42,21 @@ Three kinds of content, each with its own template and command:
 | Any other page (About, FAQ, Press, Contact…) | `/<slug>/` | `sitetool.py page --slug faq --title "…" --nav "FAQ"` |
 | Site-wide files (`app-ads.txt`, menu, CSS) | root, `_template/header.html`, `assets/` | edit by hand |
 
-The header and menu are the same on every page. Edit `_template/header.html`, then run
-`python3 _tools/sitetool.py nav`. The page you're on is highlighted automatically.
-Never edit the part between `<!-- HEADER:START -->` and `<!-- HEADER:END -->` on a page,
-because `nav` overwrites it.
+The header/menu and the footer are the same on every page. Edit `_template/header.html`
+or `_template/footer.html`, then run `python3 _tools/sitetool.py nav`. The page you're on
+is highlighted in the menu automatically. Never edit the parts between the
+`HEADER:START/END` or `FOOTER:START/END` markers on a page, because `nav` overwrites them.
+
+Design: colours, spacing and fonts are variables at the top of `assets/css/site.css`
+(light and dark mode). Change them there and every page follows.
 
 ## Edit your profile
 
-Edit `about/index.html` (plain HTML). To add a photo, save a square ~400 px image as
+Edit `about/index.html` (plain HTML). It is made of sections (What I do, Experience,
+Skills, Education, Beyond work, Contact). To add a role, a skill group or a whole new
+section (Talks, Open source, Awards...), copy a block from `_template/profile-blocks.html`.
+The home page intro, "What I do" tiles and "Beyond work" band are in `index.html`.
+To add a photo, save a square ~400 px image as
 `assets/img/profile.webp` (`cwebp -resize 400 400 photo.jpg -o assets/img/profile.webp`)
 and swap the `RD` initials for the `<img>` line shown in the comment. Keep phone numbers
 and home addresses off the site.

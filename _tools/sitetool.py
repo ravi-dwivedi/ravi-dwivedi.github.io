@@ -28,8 +28,8 @@ It never writes outside the website folder; app folders are only READ.
   page    Create a non-app page at /<slug>/ (About, FAQ, Press...) and add it to the menu:
           python3 _tools/sitetool.py page --slug faq --title "Questions and answers" --nav "FAQ"
 
-  nav     Copy the shared header/menu (_template/header.html) into every page.
-          Run it after editing _template/header.html:
+  nav     Copy the shared header/menu and footer (_template/header.html, footer.html)
+          into every page. Run it after editing either file:
           python3 _tools/sitetool.py nav
 
   check   List anything still unfinished ([EMAIL], TODO, ...) before you publish:
@@ -47,7 +47,8 @@ SITE = Path(__file__).resolve().parent.parent
 TEMPLATE = SITE / "_template"
 HOME = SITE / "index.html"
 HEADER = TEMPLATE / "header.html"
-HEADER_RE = re.compile(r"(<!-- HEADER:START -->).*?(<!-- HEADER:END -->)", re.S)
+# Shared blocks copied into every page between <!-- NAME:START --> and <!-- NAME:END -->
+PARTIALS = {"HEADER": TEMPLATE / "header.html", "FOOTER": TEMPLATE / "footer.html"}
 SHOT_WIDTH = 540            # screenshots are shown at 200 px wide; 540 keeps them sharp on hi-dpi
 PLACEHOLDERS = ["[YOUR NAME / STUDIO]", "[EMAIL]", "[DATE]", "TODO"]
 
@@ -201,19 +202,23 @@ def page_url(p: Path) -> str:
 
 
 def sync_headers() -> int:
-    """Put _template/header.html between the HEADER markers of every published page,
-    marking the menu link of the current page with aria-current="page"."""
-    header = HEADER.read_text(encoding="utf-8").strip("\n")
+    """Copy the shared partials (_template/header.html, _template/footer.html) between the
+    matching markers of every published page. The menu link of the current page gets
+    aria-current="page"."""
+    partials = {k: f.read_text(encoding="utf-8").strip("\n") for k, f in PARTIALS.items() if f.exists()}
     changed = 0
     for p in published_html():
-        t = p.read_text(encoding="utf-8")
-        if "<!-- HEADER:START -->" not in t:
-            continue
+        t = n = p.read_text(encoding="utf-8")
         url = page_url(p)
-        h = re.sub(r'(<nav[^>]*>.*?</nav>)',
-                   lambda m: m.group(1).replace(f'<a href="{url}">', f'<a href="{url}" aria-current="page">'),
-                   header, flags=re.S)
-        n = HEADER_RE.sub(lambda m: m.group(1) + "\n" + h + "\n" + m.group(2), t)
+        for name, block in partials.items():
+            if f"<!-- {name}:START -->" not in n:
+                continue
+            if name == "HEADER":
+                block = re.sub(r"(<nav[^>]*>.*?</nav>)",
+                               lambda m: m.group(1).replace(f'<a href="{url}">', f'<a href="{url}" aria-current="page">'),
+                               block, flags=re.S)
+            n = re.sub(rf"(<!-- {name}:START -->).*?(<!-- {name}:END -->)",
+                       lambda m: m.group(1) + "\n" + block + "\n" + m.group(2), n, flags=re.S)
         if n != t:
             write(p, n)
             changed += 1
@@ -415,9 +420,10 @@ def cmd_check(_a):
                     print(f"{p.relative_to(SITE)}:{i}: {ph}")
                     problems += 1
         t = p.read_text(encoding="utf-8")
-        if re.search(r"<!-- HEADER:START -->\s*<!-- HEADER:END -->", t):
-            print(f"{p.relative_to(SITE)}: header is empty - run `nav`")
-            problems += 1
+        for name in PARTIALS:
+            if re.search(rf"<!-- {name}:START -->\s*<!-- {name}:END -->", t):
+                print(f"{p.relative_to(SITE)}: {name.lower()} is empty - run `nav`")
+                problems += 1
     ads = (SITE / "app-ads.txt").read_text(encoding="utf-8")
     if "pub-" not in ads:
         print("app-ads.txt: no publisher line")
@@ -443,7 +449,7 @@ def main():
     pg.add_argument("--description"); pg.add_argument("--nav", help="menu label (omit to keep it out of the menu)")
     sp = sub.add_parser("sync-policy", help="re-copy an app's privacy policy text")
     sp.add_argument("app_dir"); sp.add_argument("--slug")
-    sub.add_parser("nav", help="copy _template/header.html into every page")
+    sub.add_parser("nav", help="copy the shared header and footer into every page")
     sub.add_parser("check", help="list unfinished placeholders")
     a = ap.parse_args()
     sys.exit({"import": cmd_import, "new": cmd_new, "page": cmd_page, "nav": cmd_nav, "sync-policy": cmd_sync_policy,
