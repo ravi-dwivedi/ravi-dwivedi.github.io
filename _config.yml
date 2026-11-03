@@ -1,0 +1,6 @@
+# GitHub Pages runs Jekyll by default. Our pages are plain HTML (no front matter),
+# so Jekyll copies them unchanged. Folders starting with "_" (_template, _tools)
+# are never published. These files are also kept off the live site:
+exclude:
+  - README.md
+  - .gitignore

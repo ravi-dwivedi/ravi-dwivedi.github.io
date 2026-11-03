@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>{{NAME}} – Ravi Dwivedi</title>
+<meta name="description" content="{{SHORT}}">
+<link rel="icon" href="img/icon-192.webp">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- HEADER:START -->
+<!-- HEADER:END -->
+
+<main id="main" class="wrap">
+  <div class="app-head">
+    <img class="icon" src="img/icon-512.png" width="112" height="112" alt="{{NAME}} app icon">
+    <div>
+      <h1>{{NAME}}</h1>
+      <p class="tagline">{{SHORT}}</p>
+      <div class="links">
+        <a class="btn" href="https://play.google.com/store/apps/details?id={{PACKAGE}}" rel="noopener noreferrer">Get it on Google Play</a>
+        <a class="btn secondary" href="privacy-policy.html">Privacy policy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE:START -->
+  <img class="feature" src="img/feature.webp" width="1024" height="500" alt="{{NAME}} feature graphic">
+  <!-- FEATURE:END -->
+
+  <h2 id="screens-title">Screenshots</h2>
+  <!-- Scrolls sideways on small screens. Give every image a meaningful alt text. -->
+  <ul class="screens" aria-labelledby="screens-title">
+{{SCREENSHOTS}}
+  </ul>
+
+  <h2>About the game</h2>
+  <div class="description">
+{{DESCRIPTION}}
+  </div>
+
+  <h2>At a glance</h2>
+  <dl class="facts">
+{{FACTS}}
+  </dl>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{{NAME}} by Ravi Dwivedi · Contact: [EMAIL]</p>
+    <p>This website uses no cookies, no analytics and no third-party scripts.</p>
+  </div>
+</footer>
+</body>
+</html>
