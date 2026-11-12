@@ -320,6 +320,14 @@ main .section h2, main .profile-section h2, main .section-head h2 { margin-top: 
 .facts dd { margin: 0; color: var(--muted); }
 @media (max-width: 560px) { .facts { grid-template-columns: 1fr; } .facts dd { margin-bottom: 0.6rem; } }
 
+/* Small status line under an app's buttons (e.g. "in closed testing") */
+.status-note {
+  display: inline-block; margin: 0.75rem 0 0; padding: 0.3rem 0.75rem;
+  border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+  font-size: 0.9rem; font-weight: 600;
+}
+.app-card .status-note { margin: 0; align-self: flex-start; }
+
 /* Trailer: a local thumbnail that links to YouTube (no embed, no third-party scripts). */
 .trailer {
   display: block; max-width: 46rem; color: var(--text); text-decoration: none;
