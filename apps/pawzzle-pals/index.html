@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<!-- Same as every page, plus: our own script (assets/js/trailer.js) and the YouTube privacy-enhanced player, loaded only when the trailer is played. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; frame-src https://www.youtube-nocookie.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
 <title>Pawzzle Pals – Ravi Dwivedi</title>
 <meta name="description" content="Pawzzle Pals: a calm logic puzzle with 50 cute pals to meet, play with and collect. 1,000 levels, offline, 18 languages, no in-app purchases.">
 <link rel="icon" href="img/icon-192.webp">
 <link rel="stylesheet" href="../../assets/css/site.css">
+<script src="/assets/js/trailer.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -56,15 +58,22 @@
   </ul>
 
   <h2 id="trailer-title">Watch the trailer</h2>
-  <!-- A plain link to YouTube (no embed: no third-party scripts or cookies on this site). -->
-  <a class="trailer" href="https://www.youtube.com/watch?v=jJGQsPYYag4" rel="noopener noreferrer" aria-describedby="trailer-note">
+  <!-- Click-to-play: nothing loads from YouTube until the visitor presses play (assets/js/trailer.js).
+       Without JavaScript this is a normal link to YouTube. -->
+  <a class="trailer" href="https://www.youtube.com/watch?v=jJGQsPYYag4" data-youtube="jJGQsPYYag4" data-title="Pawzzle Pals trailer"
+     rel="noopener noreferrer" aria-describedby="trailer-note">
     <span class="trailer-thumb">
       <img src="img/trailer.webp" width="960" height="540" loading="lazy" alt="Trailer title card: Pawzzle Pals, cozy logic puzzles with 50 cute pals, with Momo the fox in a crown.">
       <span class="trailer-play" aria-hidden="true"></span>
     </span>
-    <span class="trailer-label">▶ Watch the trailer on YouTube</span>
+    <span class="trailer-label"><span class="no-js">▶ Watch the trailer on YouTube</span><span class="js-only">▶ Play the trailer</span></span>
   </a>
-  <p id="trailer-note" class="trailer-note">Opens youtube.com. <a href="https://www.youtube.com/shorts/I07wKbXPXg8" rel="noopener noreferrer">Short version<span class="sr-only"> of the trailer, on YouTube</span></a></p>
+  <p id="trailer-note" class="trailer-note">
+    <span class="no-js">Opens youtube.com.</span>
+    <span class="js-only">Plays here from YouTube in privacy-enhanced mode. Nothing loads from YouTube until you press play.</span>
+    <a class="js-only" href="https://www.youtube.com/watch?v=jJGQsPYYag4" rel="noopener noreferrer">Watch on YouTube</a><span class="js-only" aria-hidden="true"> · </span>
+    <a href="https://www.youtube.com/shorts/I07wKbXPXg8" rel="noopener noreferrer">Short version<span class="sr-only"> of the trailer, on YouTube</span></a>
+  </p>
 
   <h2>About the game</h2>
   <div class="description">
@@ -113,7 +122,7 @@
       <p>Apps and opinions on this site are my own and not affiliated with my employer.</p>
     </div>
     <div>
-      <p>No cookies, no analytics, no third-party scripts.</p>
+      <p>No cookies or analytics. Videos load from YouTube only when you press play.</p>
       <p><a href="/about/">About</a> · <a href="/#contact">Contact</a></p>
     </div>
   </div>

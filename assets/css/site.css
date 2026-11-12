@@ -352,6 +352,16 @@ main .section h2, main .profile-section h2, main .section-head h2 { margin-top: 
 .trailer:hover .trailer-play { background: rgba(67, 56, 202, 0.9); }
 .trailer:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 .trailer-note { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
+/* The player that replaces the thumbnail once the trailer is played. */
+.trailer-frame {
+  position: relative; max-width: 46rem; aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow); background: #000;
+}
+.trailer-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+/* Text for visitors with / without JavaScript (trailer.js adds the "js" class). */
+.js-only { display: none; }
+.js .js-only { display: inline; }
+.js .no-js { display: none; }
 @media (max-width: 600px) {
   .trailer-play { width: 46px; height: 46px; right: 3%; bottom: 5%; }
   .trailer-play::after { left: 18px; top: 13px; border-width: 10px 0 10px 16px; }

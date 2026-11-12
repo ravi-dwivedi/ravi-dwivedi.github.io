@@ -5,6 +5,12 @@ Plain static HTML/CSS, no build step. GitHub Pages serves this folder as-is from
 (every page has a Content-Security-Policy that blocks them), so it stays
 Families/COPPA friendly.
 
+One exception, on app pages with a trailer: `assets/js/trailer.js` (our own script) swaps a
+local thumbnail for YouTube's privacy-enhanced player **only when the visitor presses play**.
+Those pages' CSP adds exactly `script-src 'self'; frame-src https://www.youtube-nocookie.com`.
+To add a trailer to another app page, copy the trailer block and the CSP line from
+`apps/pawzzle-pals/index.html` and change the video id in `href` and `data-youtube`.
+
 ```
 index.html                              home page: one card per app + short "about me"
 about/index.html                        profile / bio page
