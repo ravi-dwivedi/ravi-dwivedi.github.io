@@ -305,11 +305,14 @@ main .section h2, main .profile-section h2, main .section-head h2 { margin-top: 
   display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
 }
 .screens li { flex: 0 0 auto; scroll-snap-align: start; }
+/* Landscape screenshots (tablet-style games) are wider than portrait phone shots. */
+.screens.wide img { width: min(380px, 78vw); }
 .screens img { width: 210px; border-radius: 16px; border: 1px solid var(--border); display: block; box-shadow: var(--shadow); }
 
 .description { max-width: 46rem; }
 .description ul { padding-left: 0; list-style: none; }
 .description li { margin: 0.4rem 0; }
+.description ul.bullets { list-style: disc; padding-left: 1.2rem; }
 
 .facts {
   display: grid; gap: 0.25rem 2rem; grid-template-columns: max-content 1fr;
@@ -376,4 +379,5 @@ main .section h2, main .profile-section h2, main .section-head h2 { margin-top: 
 .policy h1 { font-size: clamp(1.6rem, 4.5vw, 2.3rem); }
 .policy h2 { font-size: 1.3rem; margin-top: 2rem; }
 .policy li { margin: 0.45rem 0; }
+.policy a { overflow-wrap: anywhere; } /* long links never run off a phone screen */
 .back-link { display: inline-block; margin-bottom: 1.25rem; font-weight: 600; text-decoration: none; }
