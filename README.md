@@ -74,6 +74,9 @@ and home addresses off the site.
 This works when the app folder uses the usual `store/` layout (`play-icon-512.png`,
 `screenshots/*.png`, `privacy-policy.html`, optional `feature-graphic-1024x500.png` and
 `listings/en-US.txt`). The script only reads the app folder.
+A policy written as `store/privacy-policy.md` works too: it is converted to HTML (same words), and
+`sync-policy` can re-copy it later. An app that is not published yet can be created with `new`
+and simply left off the home page (`git checkout index.html` after `new` removes the card).
 
 ```sh
 cd website

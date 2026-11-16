@@ -8,7 +8,8 @@ It never writes outside the website folder; app folders are only READ.
             <app>/store/play-icon-512.png              icon
             <app>/store/feature-graphic-1024x500.png   feature graphic (optional)
             <app>/store/screenshots/*.png              screenshots (top level only)
-            <app>/store/privacy-policy.html            privacy policy (body copied unchanged)
+            <app>/store/privacy-policy.html            privacy policy (body copied unchanged); a
+                                                       privacy-policy.md is converted to HTML if there is no .html
             <app>/store/listings/en-US.txt             TITLE / SHORT / FULL DESCRIPTION (optional)
             <app>/app/build.gradle(.kts)               applicationId
           python3 _tools/sitetool.py import ../OrbitHop
@@ -21,7 +22,8 @@ It never writes outside the website folder; app folders are only READ.
           python3 _tools/sitetool.py fill --studio "Sunny Paw Games" --email hello@example.com
           python3 _tools/sitetool.py fill --app pawzzle-pals --date "1 December 2025"
 
-  sync-policy  Re-copy an app's privacy policy text after you changed it in the app project
+  sync-policy  Re-copy an app's privacy policy text (store/privacy-policy.html or .md) after you
+          changed it in the app project
           (only the policy text between the POLICY markers is replaced):
           python3 _tools/sitetool.py sync-policy ../PawzzlePals --slug pawzzle-pals
 
@@ -156,10 +158,55 @@ def read_package(app_dir: Path):
     return None
 
 
+def md_to_html(md: str) -> str:
+    """Small Markdown -> HTML converter for privacy policies: #/## headings, paragraphs, - bullets,
+    **bold**, [text](url) and bare https:// links. Text is kept exactly as written (HTML-escaped);
+    only the placeholder "[your contact email]" becomes [EMAIL] so `fill` can complete it."""
+    md = re.sub(r"\[your contact email\]", "[EMAIL]", md, flags=re.I)
+
+    def inline(t: str) -> str:
+        t = html.escape(t, quote=False)
+        t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+        t = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2" rel="noopener noreferrer">\1</a>', t)
+
+        def link(m):
+            url = m.group(0)
+            trail = ""
+            while url and url[-1] in ".,;:)":
+                trail = url[-1] + trail
+                url = url[:-1]
+            return f'<a href="{url}" rel="noopener noreferrer">{url}</a>{trail}'
+        # only bare URLs (not the ones already inside an href="...") get linked
+        return re.sub(r'(?<![">])https?://[^\s<]+', link, t)
+
+    out = []
+    for block in re.split(r"\n\s*\n", md.strip()):
+        lines = [l.rstrip() for l in block.splitlines() if l.strip()]
+        if not lines:
+            continue
+        if lines[0].startswith("# ") and len(lines) == 1:
+            out.append(f"<h1>{inline(lines[0][2:])}</h1>")
+        elif lines[0].startswith("## ") and len(lines) == 1:
+            out.append(f"<h2>{inline(lines[0][3:])}</h2>")
+        elif all(re.match(r"[-*] ", l) for l in lines):
+            out.append("<ul>\n" + "\n".join(f"  <li>{inline(l[2:])}</li>" for l in lines) + "\n</ul>")
+        else:
+            out.append(f"<p>{inline(' '.join(l.strip() for l in lines))}</p>")
+    return "\n".join(out)
+
+
 def read_policy(store: Path):
+    """Returns (policy body HTML, app name) from store/privacy-policy.html, or from
+    store/privacy-policy.md (converted) when there is no HTML file."""
     f = store / "privacy-policy.html"
     if not f.exists():
-        return None, None
+        m = store / "privacy-policy.md"
+        if not m.exists():
+            return None, None
+        text = m.read_text(encoding="utf-8")
+        h1 = re.search(r"^#\s+(.+)$", text, re.M)
+        name = re.split(r"\s+privacy policy", h1.group(1), flags=re.I)[0].strip() if h1 else None
+        return md_to_html(text), name
     t = f.read_text(encoding="utf-8")
     body = re.search(r"<body[^>]*>(.*)</body>", t, re.S | re.I)
     title = re.search(r"<title>(.*?)</title>", t, re.S | re.I)
